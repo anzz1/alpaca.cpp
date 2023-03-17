@@ -917,11 +917,12 @@ int main(int argc, char ** argv) {
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
                " - Press Ctrl+C to interject at any time.\n"
 #endif
-               " - Press Return to return control to LLaMa.\n"
+               " - Press Return to return control to LLaMA.\n"
                " - If you want to submit another line, end your input in '\\'.\n");
     }
 
-    int remaining_tokens = params.n_predict;
+    // we may want to slide the input window along with the context, but for now we restrict to the context length
+    int remaining_tokens = model.hparams.n_ctx - embd_inp.size();
     int input_consumed = 0;
     bool input_noecho = true;
 
@@ -937,7 +938,7 @@ int main(int argc, char ** argv) {
 
     
 
-    while (true) {
+    while (remaining_tokens > 0) {
         // predict
         if (embd.size() > 0) {
             const int64_t t_start_us = ggml_time_us();
@@ -982,7 +983,7 @@ int main(int argc, char ** argv) {
             input_noecho = false;
 
             // decrement remaining sampling budget
-            // --remaining_tokens;
+            --remaining_tokens;
         } else {
             // some user input remains from prompt or interaction, forward it to processing
             while (embd_inp.size() > input_consumed) {
@@ -1037,7 +1038,7 @@ int main(int argc, char ** argv) {
                     if(params.use_color) printf(ANSI_BOLD ANSI_COLOR_GREEN);
                     if (scanf("%255[^\n]%n%*c", buf, &n_read) <= 0) {
                         // presumable empty line, consume the newline
-                        scanf("%*c");
+                        if (scanf("%*c") <= 0) { /*ignore*/ }
                         n_read=0;
                     }
                     if(params.use_color) printf(ANSI_COLOR_RESET);
@@ -1055,6 +1056,8 @@ int main(int argc, char ** argv) {
                     std::vector<gpt_vocab::id> line_inp = ::llama_tokenize(vocab, buf, false);
                     embd_inp.insert(embd_inp.end(), line_inp.begin(), line_inp.end());
                     embd_inp.insert(embd_inp.end(), response_inp.begin(), response_inp.end());
+
+                    remaining_tokens -= prompt_inp.size() + line_inp.size() + response_inp.size();
 
                     input_noecho = true; // do not echo this again
                 }
