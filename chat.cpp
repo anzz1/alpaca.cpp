@@ -817,9 +817,9 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "%s: seed = %d\n", __func__, params.seed);
 
     std::mt19937 rng(params.seed);
-    if (params.prompt.empty()) {
-        params.prompt = gpt_random_prompt(rng);
-    }
+    // if (params.prompt.empty()) {
+    //     params.prompt = gpt_random_prompt(rng);
+    // }
 
 //    params.prompt = R"(// this function checks if the number n is prime
 //bool is_prime(int n) {)";
