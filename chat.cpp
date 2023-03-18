@@ -798,6 +798,7 @@ int main(int argc, char ** argv) {
 
     params.temp = 0.1f;
     params.top_p = 0.95f;
+    params.n_ctx = 2048;
     params.interactive = true;
     params.interactive_start = true;
 #if !defined(_WIN32)
