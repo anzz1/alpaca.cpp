@@ -18,7 +18,11 @@ make chat
 ./chat
 ```
 
-You can download the weights for `ggml-alpaca-7b-q4.bin` with BitTorrent `magnet:?xt=urn:btih:5aaceaec63b03e51a98f04fd5c42320b2a033010&dn=ggml-alpaca-7b-q4.bin&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce`
+You can download the weights for `ggml-alpaca-7b-q4.bin` with BitTorrent:
+
+magnet: `magnet:?xt=urn:btih:5aaceaec63b03e51a98f04fd5c42320b2a033010&dn=ggml-alpaca-7b-q4.bin&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce`  
+torrent: https://btcache.me/torrent/5AACEAEC63B03E51A98F04FD5C42320B2A033010  
+torrent: https://torrage.info/torrent.php?h=5aaceaec63b03e51a98f04fd5c42320b2a033010  
 
 
 Alternatively you can download them with IPFS.
@@ -36,30 +40,43 @@ The weights are based on the published fine-tunes from `alpaca-lora`, converted 
 
 ## Windows Setup
 
-- Download and install CMake: <https://cmake.org/download/>
-- Download and install `git`. If you've never used git before, consider a GUI client like <https://desktop.github.com/>
-- Clone this repo using your git client of choice (for GitHub Desktop, go to File -> Clone repository -> From URL and paste `https://github.com/antimatter15/alpaca.cpp` in as the URL)
-- Open a Windows Terminal inside the folder you cloned the repository to
-- Run the following commands one by one:
+1. Get the `chat.exe` binary  
 
-```ps1
-cmake .
-cmake --build . --config Release
-```
+    a) Download a [prebuilt release](https://github.com/anzz1/alpaca.cpp/releases) and extract it.
 
-- Download the weights via any of the links in "Get started" above, and save the file as `ggml-alpaca-7b-q4.bin` in the main Alpaca directory.
-- In the terminal window, run this command:
-```ps1
-.\Release\chat.exe
-```
-- (You can add other launch options like `--n 8` as preferred onto the same line)
-- You can now type to the AI in the terminal and it will reply. Enjoy!
+    or
+
+    b) Build it yourself:
+      - Download and install CMake: <https://cmake.org/download/>
+      - Download and install `git`. If you've never used git before, consider a GUI client like <https://desktop.github.com/>
+      - Clone this repo using your git client of choice (for GitHub Desktop, go to File -> Clone repository -> From URL and paste `https://github.com/antimatter15/alpaca.cpp` in as the URL)
+      - Open a Windows Terminal inside the folder you cloned the repository to
+      - Run the following commands one by one:  
+        ```ps1
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build . --config Release
+        ```
+
+2. Download the weights via any of the links in "Get started" above, and save the file as `ggml-alpaca-7b-q4.bin` in the main Alpaca directory.
+
+3. In the terminal window, run this command:
+  ```ps1
+  .\chat.exe
+  ```
+  - (You can add `--help` to view the launch options)
+  - You can now type to the AI in the terminal and it will reply. Enjoy!
 
 ## 13B
 
 TODO
 
-Torrent: `magnet:?xt=urn:btih:f3cf71b172129d6b5abccab393bc32253fac8159&dn=ggml-alpaca-13b-q4.bin&tr=udp%3A%2F%http://2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%https://t.co/zenhelfwRd%3A6969%2Fannounce&tr=https%3A%2F%https://t.co/zenhelfwRd%3A443%2Fannounce&tr=udp%3A%2F%https://t.co/RRAn1X65wE%3A6969%2Fannounce&tr=udp%3A%2F%https://t.co/uTXBeTLUMa%3A2810%2Fannounce`
+You can download the weights for `ggml-alpaca-13b-q4.bin` with BitTorrent:
+
+magnet: `magnet:?xt=urn:btih:053b3d54d2e77ff020ebddf51dad681f2a651071&dn=ggml-alpaca-13b-q4.bin&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2810%2Fannounce`  
+torrent: https://btcache.me/torrent/053B3D54D2E77FF020EBDDF51DAD681F2A651071  
+torrent: https://torrage.info/torrent.php?h=053b3d54d2e77ff020ebddf51dad681f2a651071
 
 
 ```
